@@ -13,8 +13,8 @@ git="https://github.com/tonymorris/archlinux-install-bootstrap/raw/master/git"
 function bootstrap() {
   gitexe=$(mktemp -d /tmp/gitexe.XXXXXX)
   wget -q -c --show-progress $git -O "$gitexe/git"
+  chmod +x "$gitexe/git"
   
-
   archlinuxinstall=$(mktemp -d /tmp/archlinux-install.XXXXXX)
   $gitexe/git clone $repo $archlinuxinstall
   cd $archlinuxinstall
