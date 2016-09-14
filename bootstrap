@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
+
+repo="https://dibblego@bitbucket.org/dibblego/archlinux-install/"
+
+pacman --noconfirm --needed -Syq git
+
+function bootstrap() {
+  archlinuxinstall=$(mktemp -d /tmp/archlinux-install.XXXXXX)
+  # wget -q -c --show-progress --user="$username" --password="$password" "$install" -O "$archlinuxinstall/archlinux-install"
+  git clone $repo $archlinuxinstall
+  cd $archlinuxinstall
+  echo $archlinuxinstall
+  chmod +x "$archlinuxinstall/archlinux-install"
+  "$archlinuxinstall/archlinux-install"
+}
+bootstrap
+
