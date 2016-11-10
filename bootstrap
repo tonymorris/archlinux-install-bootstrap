@@ -13,6 +13,7 @@ git="https://github.com/tonymorris/archlinux-install-bootstrap/raw/master/git"
 pacman --noconfirm --needed -Syq git
 
 function bootstrap() {    
+  pacman --noconfirm --needed -Syq ca-certificates ca-certificates-mozilla
   archlinuxinstall=$(mktemp -d /tmp/archlinux-install.XXXXXX)
   git clone $repo $archlinuxinstall
   cd $archlinuxinstall
